@@ -15,7 +15,7 @@ data "aws_iam_policy_document" "origin_bucket_policy" {
     ]
 
     resources = [
-      "${aws_s3_bucket.s3_bucket_frontend.arn}/*",
+      "${aws_s3_bucket.frontend_hosting.arn}/*",
     ]
 
     condition {
@@ -26,25 +26,25 @@ data "aws_iam_policy_document" "origin_bucket_policy" {
   }
 }
 
-resource "aws_s3_bucket" "s3_bucket_frontend" {
+resource "aws_s3_bucket" "frontend_hosting" {
   bucket = "hackathon-sell-my-stuff-frontend-asd873a"
-  
+
   # Allow Terraform to delete non-empty buckets (will remove all objects)
   force_destroy = true
 
   tags = {
-    Name        = "hackathon-sell-my-stuff"
+    Application = "hackathon-sell-my-stuff"
     Environment = "dev"
   }
 }
 
-resource "aws_s3_bucket_policy" "s3_bucket_frontend_policy" {
-  bucket = aws_s3_bucket.s3_bucket_frontend.id
+resource "aws_s3_bucket_policy" "frontend_policy" {
+  bucket = aws_s3_bucket.frontend_hosting.id
   policy = data.aws_iam_policy_document.origin_bucket_policy.json
 }
 
-resource "aws_s3_bucket_public_access_block" "s3_bucket_frontend_public_access_block" {
-  bucket = aws_s3_bucket.s3_bucket_frontend.id
+resource "aws_s3_bucket_public_access_block" "frontend_public_access_block" {
+  bucket = aws_s3_bucket.frontend_hosting.id
 
   block_public_acls       = true
   block_public_policy     = true
@@ -53,8 +53,8 @@ resource "aws_s3_bucket_public_access_block" "s3_bucket_frontend_public_access_b
 }
 
 # S3 Bucket Website Configuration
-# resource "aws_s3_bucket_website_configuration" "s3_bucket_frontend_website" {
-#   bucket = aws_s3_bucket.s3_bucket_frontend.id
+# resource "aws_s3_bucket_website_configuration" "frontend_website_hosting" {
+#   bucket = aws_s3_bucket.frontend.id
 
 #   index_document {
 #     suffix = "index.html"
