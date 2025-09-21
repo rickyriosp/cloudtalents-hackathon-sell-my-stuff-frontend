@@ -11,10 +11,6 @@ resource "aws_acm_certificate" "my_domain" {
     domain_name       = "sellmystuff.riosr.com"
     validation_domain = "riosr.com"
   }
-  tags = {
-    Application = "hackathon-sell-my-stuff"
-    Environment = "dev"
-  }
 
   lifecycle {
     create_before_destroy = true

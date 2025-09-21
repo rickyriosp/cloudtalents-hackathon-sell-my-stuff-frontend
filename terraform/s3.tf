@@ -31,11 +31,6 @@ resource "aws_s3_bucket" "frontend_hosting" {
 
   # Allow Terraform to delete non-empty buckets (will remove all objects)
   force_destroy = true
-
-  tags = {
-    Application = "hackathon-sell-my-stuff"
-    Environment = "dev"
-  }
 }
 
 resource "aws_s3_bucket_policy" "frontend_policy" {

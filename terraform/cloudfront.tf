@@ -47,11 +47,6 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     }
   }
 
-  tags = {
-    Application = "hackathon-sell-my-stuff"
-    Environment = "dev"
-  }
-
   viewer_certificate {
     acm_certificate_arn = aws_acm_certificate.my_domain.arn
     ssl_support_method  = "sni-only"
