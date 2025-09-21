@@ -203,12 +203,13 @@ function App() {
                 
                 // Add API key to headers if provided
                 if (apiKey) {
-                  headers['Authorization'] = `Bearer ${apiKey}`;
+                  headers['X-API-Key'] = apiKey;
                 }
                 
                 // Call our FastAPI endpoint
                 const response = await fetch(`${API_BASE_URL}/listings/analyze`, {
                   method: 'POST',
+                  mode: 'cors',
                   headers,
                   body: JSON.stringify({
                     image: fileData
