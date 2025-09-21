@@ -18,6 +18,11 @@ on:
           - stage
           - prod
 
+# Need ID token write permission to use OIDC
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read
+
 jobs:
   terraform:
     env:
