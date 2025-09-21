@@ -38,6 +38,10 @@ The backend provides AI-powered image analysis and generates professional produc
 
 ## Getting Started
 
+### Prerequisites
+- Node.js 18+ 
+- npm 9+
+
 ### 1. Clone the repository
 ```bash
 git clone https://github.com/breakintocloud/hackathon-sell-my-stuff-frontend.git
@@ -55,6 +59,36 @@ npm run dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+## Windows Users - Troubleshooting
+
+If you encounter issues with `package-lock.json` on Windows:
+
+1. **Delete existing lock file and node_modules:**
+   ```bash
+   # PowerShell/Command Prompt
+   rmdir /s node_modules
+   del package-lock.json
+   
+   # Or use the provided script
+   npm run clean
+   ```
+
+2. **Reinstall dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **If issues persist, ensure you're using the correct Node/npm versions:**
+   ```bash
+   node --version  # Should be 18+
+   npm --version   # Should be 9+
+   ```
+
+### Common Issues
+- **Lock file conflicts**: Run `npm run clean` to regenerate the lock file
+- **Permission errors**: Run your terminal as Administrator (Windows) or use `sudo` (macOS/Linux)
+- **Version conflicts**: Ensure all team members use Node.js 18+ and npm 9+
 
 ### 4. Build for production
 ```bash
