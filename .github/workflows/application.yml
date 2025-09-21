@@ -87,7 +87,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build-files
-          path: build/
+          path: dist/
 
   deploy:
     env:
@@ -103,7 +103,7 @@ jobs:
         uses: actions/download-artifact@v5
         with:
           name: build-files
-          path: build/
+          path: dist/
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v5
@@ -114,7 +114,7 @@ jobs:
 
       - name: Deploy to S3
         run: |
-          aws s3 sync build/ s3://${{ needs.get-infrastructure-outputs.outputs.s3_bucket_name }} --delete
+          aws s3 sync dist/ s3://${{ needs.get-infrastructure-outputs.outputs.s3_bucket_name }} --delete
 
       - name: Invalidate CloudFront
         run: |
