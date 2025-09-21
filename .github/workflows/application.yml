@@ -49,6 +49,9 @@ jobs:
           role-session-name: GitHubActions-GetOutputs
           aws-region: ${{ secrets.AWS_REGION }}
 
+      - name: Checkout code
+        uses: actions/checkout@v5
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
