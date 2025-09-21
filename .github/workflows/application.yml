@@ -30,7 +30,7 @@ permissions:
 jobs:
   get-infrastructure-outputs:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
     outputs:
       cloudfront_distribution_id: ${{ steps.get_outputs.outputs.cloudfront_distribution_id }}
       s3_bucket_name: ${{ steps.get_outputs.outputs.s3_bucket_name }}
