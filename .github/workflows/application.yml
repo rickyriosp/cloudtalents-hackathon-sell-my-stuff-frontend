@@ -3,8 +3,14 @@ name: Application CI/CD Pipeline
 on:
   push:
     branches: [main, develop]
+    paths:
+      - '!terraform/**'
+      - '!.github/workflows/**'
   pull_request:
     branches: [main, develop]
+    paths:
+      - '!terraform/**'
+      - '!.github/workflows/**'
   workflow_run:
     workflows: ['Infrastructure CI/CD Pipeline']
     types:
